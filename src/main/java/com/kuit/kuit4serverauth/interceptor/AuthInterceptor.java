@@ -14,8 +14,10 @@ public class AuthInterceptor implements HandlerInterceptor {
     private final JwtUtil jwtUtil;
 
     public AuthInterceptor(JwtUtil jwtUtil) {
+
         this.jwtUtil = jwtUtil;
     }
+
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -25,8 +27,10 @@ public class AuthInterceptor implements HandlerInterceptor {
             Claims claims = jwtUtil.validateToken(token);
             request.setAttribute("username", claims.getSubject());
             request.setAttribute("role", claims.get("role"));
+            // userName / role을 request에 담아서 controller에 보냄
             return true;
         }
+
         throw new CustomException(ErrorCode.MISSING_AUTH_HEADER);
     }
 }

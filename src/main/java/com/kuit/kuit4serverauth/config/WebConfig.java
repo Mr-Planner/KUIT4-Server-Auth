@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    private final AuthInterceptor authInterceptor;
+    private final AuthInterceptor authInterceptor; // 등록 해야 함
 
     public WebConfig(AuthInterceptor authInterceptor) {
         this.authInterceptor = authInterceptor;
@@ -16,5 +16,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // TODO /profile, /admin 앞에 붙이기
+
     }
 }
