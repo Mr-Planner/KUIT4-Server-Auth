@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+// RestController : JSON형식의 응답반환
 @RestController
 public class AuthController {
     private final UserRepository userRepository;
@@ -40,6 +41,8 @@ public class AuthController {
         // Map을 DTO로 감싸는게 좋다
         // JWT Token 생성
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
+
+        // 응답 반환
         Map<String, String> response = new HashMap<>();
         response.put("token", token); // 토큰을 응답으로 보낸다
         return ResponseEntity.ok(response);

@@ -25,7 +25,7 @@ public class UserController {
         String token = request.getHeader("Authorization");
 
         if (token == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+            throw new CustomException(ErrorCode.INVALID_TOKEN);
         }
 
         String username = jwtUtil.getUsernameFromToken(token);
@@ -39,15 +39,15 @@ public class UserController {
         String token = request.getHeader("Authorization");
 
         if (token == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+            throw new CustomException(ErrorCode.INVALID_TOKEN);
         }
 
         String role = jwtUtil.getRoleFromToken(token);
         if (! "ROLE_ADMIN".equals(role)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden user");
+            throw new CustomException(ErrorCode.FORBIDDEN_ACCESS);
         }
 
-        return ResponseEntity.ok("Hello, admin user");
+        return ResponseEntity.ok("Hello, admin");
 
     }
 }
