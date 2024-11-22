@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+// JWT를 생성하고 검증
 @Component
 public class JwtUtil {
     private final String secret = "mysecretkey";
@@ -36,4 +37,15 @@ public class JwtUtil {
             throw new CustomException(ErrorCode.INVALID_TOKEN);
         }
     }
+
+    // Claims에서 username 추출
+    public String getUsernameFromToken(String token) {
+        return validateToken(token).getSubject();
+    }
+
+    // Claims에서 role추출
+    public String getRoleFromToken(String token) {
+        return validateToken(token).get("role").toString();
+    }
+
 }
