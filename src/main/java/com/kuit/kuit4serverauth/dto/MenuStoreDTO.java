@@ -1,5 +1,6 @@
 package com.kuit.kuit4serverauth.dto;
 
+import com.kuit.kuit4serverauth.model.Store;
 import lombok.*;
 
 import java.awt.*;

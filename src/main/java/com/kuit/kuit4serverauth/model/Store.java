@@ -7,9 +7,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Store {
     private Long id;
-    private String username;
-    private String password;
-    private String role; // e.g., ROLE_USER, ROLE_ADMIN
+    private String name;
+    private Integer minimumOrderPrice;
+    private String status;
+
 }
